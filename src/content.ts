@@ -1,15 +1,17 @@
+enum Keys {
+  LEFT = "ArrowLeft",
+  RIGHT = "ArrowRight",
+}
+
+const VIDEO_PLAYER_SELECTOR = "video[data-no-fullscreen]";
+
 let interval: number;
 
 interval = setInterval(() => {
-  const selector = "video[data-no-fullscreen]";
-  const video: HTMLVideoElement | null = document.querySelector(selector);
-
+  const video: HTMLVideoElement | null = document.querySelector(
+    VIDEO_PLAYER_SELECTOR,
+  );
   if (!video) return;
-
-  enum Keys {
-    LEFT = "ArrowLeft",
-    RIGHT = "ArrowRight",
-  }
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.defaultPrevented) return;
