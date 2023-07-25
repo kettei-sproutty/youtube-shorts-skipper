@@ -15,17 +15,20 @@ interval = setInterval(() => {
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.defaultPrevented) return;
+    chrome.storage.sync.get(["injection", "skip"], ({ injection, skip }) => {
+      if (!injection) return;
 
-    switch (event.code) {
-      case Keys.LEFT:
-        video.currentTime -= 5;
-        break;
-      case Keys.RIGHT:
-        video.currentTime += 5;
-        break;
-      default:
-        break;
-    }
+      switch (event.code) {
+        case Keys.LEFT:
+          video.currentTime -= skip || 5;
+          break;
+        case Keys.RIGHT:
+          video.currentTime += skip || 5;
+          break;
+        default:
+          break;
+      }
+    })
   };
 
   if (window.onkeydown === handleKeyDown) return;
@@ -33,4 +36,5 @@ interval = setInterval(() => {
   window.onkeydown = handleKeyDown;
 
   clearInterval(interval);
+
 }, 1000);

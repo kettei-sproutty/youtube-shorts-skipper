@@ -4,6 +4,6 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 
   return chrome.scripting.executeScript({
     target: { tabId: tabId },
-    files: ["./content.js"],
+    files: ["./scripts/content.js"],
   });
 });

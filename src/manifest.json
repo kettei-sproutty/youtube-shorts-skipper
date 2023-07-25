@@ -1,6 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/chrome-manifest",
   "name": "YouTube Shorts Skipper",
+  "short_name": "YSS",
   "version": "0.1.0",
   "homepage_url": "https://github.com/kettei-sproutty/youtube-shorts-skipper",
   "description": "Enable five seconds skip on YouTube Shorts",
@@ -23,6 +24,14 @@
     "https://www.youtube.com/shorts*"
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "/scripts/background.js"
+  },
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "/icons/favicon-16x16.png",
+      "128": "/icons/favicon-128x128.png"
+    },
+    "default_title": "YouTube Shorts Skipper"
   }
 }
