@@ -1,0 +1,23 @@
+{
+  "name": "youtube-shorts-skipper",
+  "description": "Youtube shorts five second skipper",
+  "version": "0.1.0",
+  "main": "dist/content.js",
+  "scripts": {
+    "build": "pnpm clean && pnpm transpile",
+    "clean": "rimraf -rf dist",
+    "dev": "swc src -d dist --copy-files -w",
+    "transpile": "swc src -d dist --copy-files"
+  },
+  "keywords": ["Youtube", "Shorts", "Skipper"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@swc/cli": "^0.1.62",
+    "@swc/core": "^1.3.71",
+    "chokidar": "^3.5.3",
+    "prettier": "^3.0.0",
+    "rimraf": "^5.0.1",
+    "typescript": "^5.1.6"
+  }
+}
