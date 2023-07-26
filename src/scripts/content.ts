@@ -5,6 +5,8 @@ enum Keys {
 
 const VIDEO_PLAYER_SELECTOR = "video[data-no-fullscreen]";
 
+const storage = chrome.storage;
+
 let interval: number;
 
 interval = setInterval(() => {
@@ -15,7 +17,7 @@ interval = setInterval(() => {
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.defaultPrevented) return;
-    chrome.storage.sync.get(["injection", "skip"], ({ injection, skip }) => {
+    storage.sync.get(["injection", "skip"], ({ injection, skip }) => {
       if (!injection) return;
 
       switch (event.code) {

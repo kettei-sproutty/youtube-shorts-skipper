@@ -1,19 +1,19 @@
-<html class="min-w-[180px] bg-[#f4f4f4] text-[#10101a] border-md">
+<html class="min-w-[180px] bg-[#f4f4f4] text-[#10101a]">
   <head>
     <title>Youtube Short Skipper</title>
     <link rel="stylesheet" href="styles/globals.css" />
   </head>
   <body class="p-2">
-    <header class="flex flex-row justify-end items-center">
+    <header class="flex flex-row items-center justify-end">
       <img
         src="/icons/favicon-128x128.png"
         width="24"
         height="24"
-        class="w-6 h-6 border-2 rounded-full border-[#10101a]"
+        class="h-6 w-6 rounded-full border-2 border-[#10101a]"
         alt="YSS Logo"
       />
     </header>
-    <main class="flex flex-col gap-2 mr-6 bg-white rounded-md">
+    <main class="mr-6 flex flex-col gap-2 rounded-md bg-white">
       <div>
         <p>Disable Injection</p>
         <input id="injection" type="checkbox" />
@@ -21,6 +21,10 @@
       <div>
         <p>Enable Preview</p>
         <input id="preview" type="checkbox" />
+      </div>
+      <div>
+        <p>Skipping value: <span data-skip /></p>
+        <input id="skip" type="range" min="0" max="20" />
       </div>
     </main>
   </body>

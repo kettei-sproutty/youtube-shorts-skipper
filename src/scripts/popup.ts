@@ -1,23 +1,38 @@
-const injection = document.querySelector("#injection") as HTMLInputElement;
-const preview = document.querySelector("#preview") as HTMLInputElement;
+const injectionElement = document.querySelector("#injection") as HTMLInputElement;
+const previewElement = document.querySelector("#preview") as HTMLInputElement;
+const skipElement = document.querySelector("#skip") as HTMLInputElement;
+const skipElementValue = document.querySelector("[data-skip]");
 
-if(!injection || !preview) throw new Error("Couldn't find injection or preview checkbox");
+if(!injectionElement || !previewElement || !skipElement || !skipElementValue) throw new Error("Something went wrong");
 
-chrome.storage.sync.get(["injection", "preview"], ({ injection: injectionValue, preview: previewValue }) => {
-  injection.checked = injectionValue;
-  preview.checked = previewValue;
+// Set the initial values of the checkboxes inside chrome storage
+chrome.storage.sync.get(["injection", "preview", "skip"], ({ injection: injectionValue, preview: previewValue }) => {
+  injectionElement.checked = injectionValue;
+  previewElement.checked = previewValue;
+  skipElementValue.innerHTML = String(skipElement.value);
 });
 
-injection.addEventListener("change", event => {
+// Add event listeners to the "Injection" checkbox
+injectionElement.addEventListener("change", event => {
   const target = event.target as HTMLInputElement;
   if (!target || !("checked" in target)) return;
 
   return chrome.storage.sync.set({ injection: target.checked });
 });
 
-preview.addEventListener("change", event => {
+// Add event listeners to the "Preview" checkbox
+previewElement.addEventListener("change", event => {
   const target = event.target as HTMLInputElement;
   if (!target || !("checked" in target)) return;
 
   return chrome.storage.sync.set({ preview: target.checked });
+});
+
+// Add event listeners to the "Skip" input
+skipElement.addEventListener("change", event => {
+  const target = event.target as HTMLInputElement;
+  if (!target || !("value" in target)) return;
+  document.querySelector("[data-skip]")!.innerHTML = target.value;
+
+  return chrome.storage.sync.set({ skip: Number(target.value) });
 });
